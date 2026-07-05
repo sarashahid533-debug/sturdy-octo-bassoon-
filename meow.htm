@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Components - Extended Professional Layout</title>
+    
+    <!-- Custom Local Styles replacing all external CDN frameworks -->
+    <style>
+        /* Base Configuration */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #f3f4f6;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1f2937;
+            padding-bottom: 100px;
+            line-height: 1.5;
+        }
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Beautiful Jumbotron Gradient styling */
+        .jumbotron {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: #ffffff;
+            padding: 6rem 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
+            text-align: left;
+        }
+        .jumbotron h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+        }
+        .jumbotron .lead {
+            color: #bfdbfe;
+            font-weight: 400;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Flex & Layout Utilities */
+        .d-flex { display: flex; }
+        .flex-wrap { flex-wrap: wrap; }
+        .justify-content-between { justify-content: space-between; }
+        .align-items-center { align-items: center; }
+        .mb-3 { margin-bottom: 1rem; }
+        .mb-4 { margin-bottom: 1.5rem; }
+        .ml-2 { margin-left: 0.5rem; }
+        .pb-2 { padding-bottom: 0.5rem; }
+        .border-bottom { border-bottom: 1px solid #e5e7eb; }
+        .small { font-size: 0.875rem; }
+        .font-weight-medium { font-weight: 500; }
+        
+        /* Grid system for layout expansion */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        .col-md-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .col-md-4 {
+            flex: 0 0 33.3333%;
+            max-width: 33.3333%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        @media (max-width: 768px) {
+            .col-md-6, .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* Beautiful Local Colored Buttons */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .btn {
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            filter: brightness(1.05);
+        }
+        .btn-primary { background-color: #ffffff; color: #1e3a8a; }
+        .btn-success { background-color: #10b981; color: #ffffff; }
+        .btn-warning { background-color: #f59e0b; color: #1f2937; }
+        .btn-danger { background-color: #ef4444; color: #ffffff; }
+
+        /* Clean White Section Cards */
+        .section-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        h2 {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #111827;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Notification Badges Rows */
+        .badge-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .badge-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Rounded Aesthetic Badges Colors */
+        .badge {
+            font-weight: 600;
+            padding: 0.4em 0.8em;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            display: inline-block;
+        }
+        .badge-dark { background-color: #1f2937; color: #ffffff; }
+        .badge-primary { background-color: #dbeafe; color: #1e40af; }
+        .badge-success { background-color: #d1fae5; color: #065f46; }
+        .badge-info { background-color: #e0f2fe; color: #0369a1; }
+        .badge-warning { background-color: #fef3c7; color: #92400e; }
+
+        /* Sleek Thin Progress Bars */
+        .progress {
+            height: 12px;
+            border-radius: 9999px;
+            background-color: #e5e7eb;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 4px;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 0.6s ease;
+        }
+        .bg-primary { background-color: #3b82f6; }
+        .bg-success { background-color: #10b981; }
+        .bg-warning { background-color: #f59e0b; }
+        .bg-danger { background-color: #ef4444; }
+
+        /* Extended Page Component Blocks */
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.25rem;
+        }
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+        th {
+            background-color: #f9fafb;
+            color: #4b5563;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            color: #374151;
+        }
+        tr:hover td {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Step 3 & 4: Upgraded Jumbotron Section -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Welcome to Bootstrap</h1>
+            <p class="lead">Discover the power of clean, interactive components designed for the modern web environment.</p>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary">Primary Action</button>
+                <button type="button" class="btn btn-success">Success</button>
+                <button type="button" class="btn btn-warning">Warning</button>
+                <button type="button" class="btn btn-danger">Danger</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container Layout -->
+    <div class="container">
+        
+        <!-- ROW 1: Badges & Progress Bars (Side by Side) -->
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Step 5: Beautiful Badges Card -->
+                <div class="section-card">
+                    <h2>System Notifications <span class="badge badge-dark ml-2">Updates</span></h2>
+                    <div style="margin-top: 1rem;">
+                        <div class="badge-row">
+                            <span>Network traffic status check:</span>
+                            <span class="badge badge-primary">Primary Only</span>
+                        </div>
+                        <div class="badge-row">
+                            <span>All background database backups completed:</span>
+                            <span class="badge badge-success">Success</span>
+                        </div>
+                        <div class="badge-row">
+                            <span>New server synchronization pending:</span>
+                            <span class="badge badge-info">Info Logs</span>
+                        </div>
+                        <div class="badge-row">
+                            <span>Storage optimization capacity threshold reached:</span>
+                            <span class="badge badge-warning">Warning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Step 6: Beautiful Progress Bars Card -->
+                <div class="section-card">
+                    <h2>Resource Allocation Progress</h2>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between small font-weight-medium"><span>Server Core Load</span><span>25%</span></div>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" style="width: 25%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between small font-weight-medium"><span>Bandwidth Allocation</span><span>50%</span></div>
+                        <div class="progress">
